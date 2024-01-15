@@ -8,6 +8,4 @@ git push --tags
 
 # Publish packages to npm registry
 echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> ~/.npmrc
-echo "publish is disabled"
-
 echo pnpm publish
