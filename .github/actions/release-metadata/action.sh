@@ -35,4 +35,14 @@ fi
 ###
 # Generate release commit title
 ###
-echo "release-commit-title=release($changeset_pre_tag): $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" = "main" ]
+then
+  echo "release-commit-title=release(main): $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+elif [ "$branch" = "next" ]
+then
+  echo "release-commit-title=release(next): $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+else
+  echo "Can not release from $branch branch"
+  exit 1
+fi
