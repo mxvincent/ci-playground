@@ -1,9 +1,6 @@
 name: 'pull-request'
 on:
   pull_request:
-    branches-ignore:
-      - main
-      - next
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
