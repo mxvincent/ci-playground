@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  name: production-service-a
+spec:
+  destination:
+    namespace: production-service-a
+    server: https://kubernetes.default.svc
+  project: node-packages
+  source:
+    directory:
+      include: service-a.yaml
+      recurse: false
+    path: kubernetes/manifests/production
+    repoURL: https://github.com/mxvincent/node-packages.git
+    targetRevision: deploy/production
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  name: production-service-b
+spec:
+  destination:
+    namespace: production-service-b
+    server: https://kubernetes.default.svc
+  project: node-packages
+  source:
+    directory:
+      include: service-b.yaml
+      recurse: false
+    path: kubernetes/manifests/production
+    repoURL: https://github.com/mxvincent/node-packages.git
+    targetRevision: deploy/production
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
