@@ -35,4 +35,4 @@ fi
 ###
 # Generate release commit title
 ###
-echo "release-commit-title=release: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+echo "release-commit-title=release($changeset_pre_tag): $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
