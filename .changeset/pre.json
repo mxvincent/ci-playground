@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@action/build-planner": "1.0.0",
+    "service-a": "0.0.0",
+    "service-b": "0.0.0",
+    "kubernetes": "0.0.0",
+    "@pkg/core": "0.0.0",
+    "@pkg/eslint-config": "0.0.0",
+    "@pkg/tsconfig": "0.0.0"
+  },
+  "changesets": [
+    "honest-deers-reply",
+    "silent-gorillas-dance"
+  ]
+}
