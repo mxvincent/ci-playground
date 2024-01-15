@@ -1,0 +1,52 @@
+name: 'code-quality'
+on:
+  workflow_call:
+jobs:
+  type-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+      - name: 'Setup NodeJS'
+        uses: ./.github/actions/setup-node
+      - name: 'Perform typescript type checking'
+        run: pnpm run code:check
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+      - name: 'Setup NodeJS'
+        uses: ./.github/actions/setup-node
+      - name: 'Lint sources'
+        run: pnpm run code:lint
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14-alpine
+        options: >- # postgres container does not provide a health check
+          --health-cmd pg_isready
+          --health-interval 3s
+          --health-timeout 2s
+          --health-retries 10
+        env:
+          POSTGRES_USER: node-packages
+          POSTGRES_PASSWORD: node-packages
+        ports:
+          - 5432:5432
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+      - name: 'Setup NodeJS'
+        uses: ./.github/actions/setup-node
+      - name: 'Run all tests'
+        env:
+          LOG_LEVEL: fatal
+          TIME_ZONE: UTC
+          DB_TYPE: postgres
+          DB_DATABASE: node-packages
+          DB_USERNAME: node-packages
+          DB_PASSWORD: node-packages
+          NODE_OPTIONS: --max-old-space-size=4000
+        run: pnpm run test:all

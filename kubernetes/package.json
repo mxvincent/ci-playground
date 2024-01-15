@@ -1,0 +1,30 @@
+{
+	"name": "kubernetes",
+	"version": "0.0.0",
+	"main": "main.ts",
+	"types": "main.ts",
+	"license": "Apache-2.0",
+	"private": true,
+	"scripts": {
+		"clean": "rm -rf dist src/imports",
+		"code:check:dev": "tsc --noEmit --skipLibCheck",
+		"code:lint": "eslint src",
+		"generate-manifests": "cdk8s synth --output manifests --check-upgrade=false",
+		"import-api-resources": "kubectl get crds -o yaml > crd.yaml;pnpm cdk8s import --output src/imports;rm crd.yaml",
+		"deploy": "pnpm run generate-manifests && git add . && git commit -m \"chore(deploy): $(date -u +'%Y-%m-%dT%H:%M:%SZ') [skip ci]\" --no-verify && git push --no-verify"
+	},
+	"devDependencies": {
+		"@pkg/tsconfig": "workspace:*",
+		"@pkg/eslint-config": "workspace:*",
+		"@swc/register": "^0.1.10",
+		"@types/node": "^18.18.8",
+		"@types/ramda": "^0.29.3",
+		"cdk8s": "^2.64.7",
+		"cdk8s-cli": "^2.82.0",
+		"cdk8s-plus-26": "^2.18.12",
+		"constructs": "^10.2.70",
+		"ramda": "^0.29.0",
+		"tiny-invariant": "^1.3.1",
+		"typescript": "^5.2.2"
+	}
+}

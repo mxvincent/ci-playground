@@ -1,0 +1,27 @@
+{
+  "name": "@pkg/core",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build:swc": "swc ./src -d ./dist",
+    "build:tsc": "tsc",
+    "build:watch": "pnpm run build:tsc --watch",
+    "clean": "find . ! -path '*/node_modules/*' -name 'dist' -d -prune -exec rm -rf '{}' +; find . -name '*.tsbuildinfo' -prune -exec rm -rf '{}' +; find . -path '*/.turbo' -type d -prune -exec rm -rf '{}' +",
+    "code:lint": "eslint src",
+    "code:check": "tsc --noEmit",
+    "code:check-watch": "tsc --noEmit --watch",
+    "test:all": "jest"
+  },
+  "dependencies": {
+    "ramda": "^0.29.1",
+    "pino": "^8.17.2"
+  },
+  "devDependencies": {
+    "@pkg/eslint-config": "workspace:*",
+    "@pkg/tsconfig": "workspace:*",
+    "@types/ramda": "^0.29.2",
+    "pino-pretty": "^10.3.1"
+  }
+}

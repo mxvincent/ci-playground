@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "baseUrl": "./src",
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true
+    },
+    "paths": {
+      "@app/*": ["./*"],
+      "@database/*": ["./database/*"],
+      "@module/*": ["./modules/*"],
+      "@jest/*": ["./@jest/*"]
+    },
+    "target": "es2022"
+  }
+}

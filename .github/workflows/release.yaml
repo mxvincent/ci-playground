@@ -1,0 +1,73 @@
+name: 'release'
+on:
+  push:
+    branches:
+      - main
+      - next
+env:
+  HUSKY: 0
+  KUBECONFIG: /tmp/kube-config
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+#  code-quality:
+#    needs:
+#      - prepare
+#    uses: ./.github/workflows/code-quality.yaml
+  release:
+    runs-on: ubuntu-latest
+    needs:
+      - prepare
+#      - code-quality
+    outputs:
+      published: ${{ steps.action.outputs.published }}
+      release-upstream: ${{ github.ref_name }}
+      build-matrix: ${{ steps.plan.outputs.build-matrix }}
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: 'Get release metadata'
+        id: metadata
+        uses: ./.github/actions/release-metadata
+      - name: 'Setup NodeJS'
+        uses: ./.github/actions/setup-node
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Run changeset action'
+        id: action
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          publish: scripts/ci/publish.sh
+          version: scripts/ci/bump.sh
+          commit: ${{ steps.metadata.outputs.release-commit-title }}
+          title: ${{ steps.metadata.outputs.release-commit-title }}
+      - name: 'Plan build'
+        id: plan
+        uses: ./.github/actions/build-planner
+        with:
+          applications-directory: ${{ github.workspace }}/applications
+          published-packages: ${{ steps.action.outputs.publishedPackages }}
+  build:
+    if: needs.release.outputs.published == 'true'
+    needs:
+      - release
+    uses: ./.github/workflows/docker-build.yaml
+    with:
+      matrix: ${{ needs.release.outputs.build-matrix }}
+  deploy:
+    needs:
+      - release
+      - build
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      release-upstream: ${{ needs.release.outputs.release-upstream }}

@@ -1,0 +1,21 @@
+name: 'pull-request'
+on:
+  pull_request:
+    branches-ignore:
+      - main
+      - next
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-node
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+  code-quality:
+    needs: prepare
+    uses: ./.github/workflows/code-quality.yaml

@@ -1,0 +1,22 @@
+name: 'package-metadata'
+description: 'Extract package metadata from package.json'
+inputs:
+  package-path:
+    description: Package relative path from repository root
+    required: true
+outputs:
+  name:
+    description: "Package name"
+    value: ${{ steps.read-metadata.outputs.name }}
+  version:
+    description: "Package version"
+    value: ${{ steps.read-metadata.outputs.version }}
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Extract metadata from package.json'
+      id: read-metadata
+      shell: bash
+      run: ./.github/actions/package-metadata/action.sh >> $GITHUB_OUTPUT
+      env:
+        PACKAGE_PATH: '${{ inputs.package-path }}'

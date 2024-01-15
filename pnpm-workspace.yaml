@@ -1,0 +1,5 @@
+packages:
+  - ".github/actions/*"
+  - "applications/*"
+  - "packages/*"
+  - "kubernetes"

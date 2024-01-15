@@ -1,0 +1,17 @@
+name: 'setup-kubectl'
+description: 'Setup kubectl client'
+inputs:
+  config:
+    description: Base64 encoded kubectl config
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Install kubectl'
+      if: steps.action.outputs.published == 'true'
+      uses: azure/setup-kubectl@v3
+    - name: 'Configure kubectl'
+      shell: 'bash'
+      run: |
+        echo ${{ inputs.config }} | base64 -d > "$KUBECONFIG"
+        kubectl config use-context iep5mae

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Typescript base config for node v18 package",
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"composite": true,
+		"types": ["jest", "node"],
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
+		"lib": ["ES2022", "dom"],
+		"noUnusedParameters": false
+	}
+}

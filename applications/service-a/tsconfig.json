@@ -1,0 +1,16 @@
+{
+	"extends": "@pkg/tsconfig/commonjs.json",
+	"include": ["src"],
+	"exclude": ["*.test.ts", "*.stub.ts", "node_modules"],
+	"compilerOptions": {
+		"rootDir": "./src",
+		"baseUrl": "./src",
+		"outDir": "./dist",
+		"paths": {
+			"@app/*": ["./*"],
+			"@database/*": ["./database/*"],
+			"@module/*": ["./modules/*"],
+			"@jest/*": ["./@jest/*"]
+		}
+	}
+}

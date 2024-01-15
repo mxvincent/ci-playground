@@ -1,0 +1,35 @@
+{
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"build:swc": {
+			"dependsOn": ["^build:swc"],
+			"inputs": ["src/**/*.ts", "src/**/*.json"],
+			"outputs": ["dist/**"]
+		},
+		"build:tsc": {
+			"dependsOn": ["^build:tsc"],
+			"inputs": ["src/**/*.ts", "src/**/*.json"],
+			"outputs": ["dist/**"]
+		},
+		"build": {
+			"dependsOn": ["^build"],
+			"inputs": ["src/**/*.ts", "src/**/*.json"],
+			"outputs": ["dist/**", "index.js"]
+		},
+		"clean": {
+			"cache": false
+		},
+		"code:lint": {
+			"dependsOn": ["build:tsc"],
+			"inputs": ["src/**/*.ts"]
+		},
+		"code:check": {
+			"dependsOn": ["build:tsc"],
+			"inputs": ["src/**/*.ts"]
+		},
+		"test:all": {
+			"dependsOn": ["build:tsc"],
+			"inputs": ["src/**/*.ts", "src/**/*.json"]
+		}
+	}
+}

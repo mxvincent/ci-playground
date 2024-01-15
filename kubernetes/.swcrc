@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "module": {
+    "type": "commonjs"
+  },
+  "sourceMaps": false,
+  "jsc": {
+    "baseUrl": "./src",
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "paths": {
+      "@charts/*": ["./charts/*"],
+      "@imports/*": ["./imports/*"],
+      "@libs/*": ["./libs/*"]
+    },
+    "target": "es2020"
+  }
+}

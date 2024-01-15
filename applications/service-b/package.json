@@ -1,0 +1,25 @@
+{
+  "name": "service-b",
+  "version": "0.0.0",
+  "repository": "https://github.com/mxvincent/node-packages/tree/main/applications/service-b",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build:swc": "swc ./src -d ./dist",
+    "build:tsc": "tsc",
+    "build:watch": "pnpm run build:swc --watch",
+    "clean": "find . ! -path '*/node_modules/*' -name 'dist' -d -prune -exec rm -rf '{}' +; find . -name '*.tsbuildinfo' -prune -exec rm -rf '{}' +; find . -path '*/.turbo' -type d -prune -exec rm -rf '{}' +",
+    "code:lint": "eslint src",
+    "code:check": "tsc --noEmit",
+    "code:check:watch": "tsc --noEmit --watch",
+    "start:app-server": "node --watch -r @swc/register  src/server.ts"
+  },
+  "dependencies": {
+    "@pkg/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@pkg/eslint-config": "workspace:*",
+    "@pkg/tsconfig": "workspace:*"
+  }
+}

@@ -1,0 +1,14 @@
+name: 'build-planner'
+description: 'Plan build step'
+inputs:
+  applications-directory:
+    description: GitHub workspace directory
+    default: applications
+  published-packages:
+    description: Changeset published packages
+outputs:
+  build-matrix:
+    description: 'Matrix used to trigger application build'
+runs:
+  using: 'node20'
+  main: 'index.js'
