@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: staging-service-b
   namespace: staging-service-b
 spec: {}
@@ -15,7 +15,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: service-b-docker-auth-secret
   namespace: staging-service-b
 spec:
@@ -44,7 +44,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: service-b-config-files-secrets
   namespace: staging-service-b
 spec:
@@ -81,7 +81,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: service-b-app-server
   namespace: staging-service-b
 spec:
@@ -102,7 +102,7 @@ spec:
         app.kubernetes.io/component: app-server
         app.kubernetes.io/instance: staging
         app.kubernetes.io/name: service-b
-        app.kubernetes.io/version: 0.1.0
+        app.kubernetes.io/version: 0.1.1-next.0
         cdk8s.io/metadata.addr: service-b-app-server-c810e653
     spec:
       automountServiceAccountToken: false
@@ -113,7 +113,7 @@ spec:
           env:
             - name: CONFIG_FILE_PATH
               value: /app/config.json
-          image: ghcr.io/mxvincent/service-b:0.1.0
+          image: ghcr.io/mxvincent/service-b:0.1.1-next.0
           imagePullPolicy: Always
           name: app-server
           ports:
@@ -159,7 +159,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: service-b-app-server
   namespace: staging-service-b
 spec:
@@ -182,7 +182,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-b
-    app.kubernetes.io/version: 0.1.0
+    app.kubernetes.io/version: 0.1.1-next.0
   name: service-b-app-server
   namespace: staging-service-b
 spec:
