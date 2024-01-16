@@ -22,7 +22,7 @@ git pull next
 if [ -f "$CHANGESET_PATH/pre.json" ]
 then
    pnpm exec changeset pre exit
-   git commit -m "chore: exit pre-release mode (next)"
+   git commit -m "chore: exit pre-release mode (next)" --no-verify
 fi
 
 git checkout main
