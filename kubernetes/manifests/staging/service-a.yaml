@@ -4,7 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: staging-service-a
   namespace: staging-service-a
 spec: {}
@@ -15,7 +15,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: service-a-docker-auth-secret
   namespace: staging-service-a
 spec:
@@ -44,7 +44,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: service-a-config-files
   namespace: staging-service-a
 immutable: false
@@ -60,7 +60,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: service-a-app-server
   namespace: staging-service-a
 spec:
@@ -81,7 +81,7 @@ spec:
         app.kubernetes.io/component: app-server
         app.kubernetes.io/instance: staging
         app.kubernetes.io/name: service-a
-        app.kubernetes.io/version: 0.1.0-next.0
+        app.kubernetes.io/version: 0.1.0
         cdk8s.io/metadata.addr: service-a-app-server-c8d3e0da
     spec:
       automountServiceAccountToken: false
@@ -92,7 +92,7 @@ spec:
           env:
             - name: CONFIG_FILE_PATH
               value: /app/config.json
-          image: ghcr.io/mxvincent/service-a:0.1.0-next.0
+          image: ghcr.io/mxvincent/service-a:0.1.0
           imagePullPolicy: Always
           name: app-server
           ports:
@@ -135,7 +135,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: service-a-app-server
   namespace: staging-service-a
 spec:
@@ -158,7 +158,7 @@ metadata:
     app.kubernetes.io/component: app-server
     app.kubernetes.io/instance: staging
     app.kubernetes.io/name: service-a
-    app.kubernetes.io/version: 0.1.0-next.0
+    app.kubernetes.io/version: 0.1.0
   name: service-a-app-server
   namespace: staging-service-a
 spec:
