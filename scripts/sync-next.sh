@@ -9,6 +9,7 @@ do
   working_directory=$(dirname "$working_directory")
 done
 cd "$working_directory" || exit
+changeset_path="$working_directory/.changeset"
 
 # Update local branches
 git checkout main
@@ -21,13 +22,13 @@ git merge main --no-commit
 git commit -m 'chore: merge `main` into `next`' --no-verify
 
 # Enter pre-release mode
-if [ -f "$working_directory/.changeset/pre.json" ]
+if [ -f "$changeset_path/pre.json" ]
 then
   pnpm exec changeset pre exit
 fi
 
 pnpm exec changeset pre enter next
-git add "$CHANGESET_PATH"
+git add "$changeset_path"
 git commit -m "chore: enter pre-release mode (next)" --no-verify
 
 git push origin next --no-verify
