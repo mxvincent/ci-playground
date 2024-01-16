@@ -26,7 +26,7 @@ then
   pnpm exec changeset pre exit
 fi
 
-pnpm exec changeset pre enter
+pnpm exec changeset pre enter next
 git add "$CHANGESET_PATH"
 git commit -m "chore: enter pre-release mode (next)" --no-verify
 
