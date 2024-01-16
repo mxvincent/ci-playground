@@ -15,8 +15,8 @@ cd "$working_directory" || exit
 echo "changeset-path=$CHANGESET_PATH"
 
 # Checkout next branch
-git pull next
 git checkout next
+git pull next
 
 # Get changeset pre-release tag
 if [ -f "$CHANGESET_PATH/pre.json" ]
@@ -32,8 +32,8 @@ then
    git commit -m "chore(release): exit pre-release mode (next)"
 fi
 
-git pull main
 git checkout main
+git pull main
 git merge next
 git push origin main next
 

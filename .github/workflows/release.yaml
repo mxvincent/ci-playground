@@ -41,6 +41,9 @@ jobs:
         uses: ./.github/actions/setup-node
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'Adjust pre-release config'
+        shell: bash
+        run: ./scripts/ci/configure-pre-release.sh
       - name: 'Run changeset action'
         id: action
         uses: changesets/action@v1
