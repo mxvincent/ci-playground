@@ -16,11 +16,10 @@ echo "changeset-path=$CHANGESET_PATH"
 
 # Define release upstream
 branch=$(git rev-parse --abbrev-ref HEAD)
-changeset_release_branch_prefix="changeset-release"
-if [ "$branch" = "$changeset_release_branch_prefix/main" ]
+if [ "$branch" = "main" ]
 then
   upstream="main"
-elif [ "$branch" = "$changeset_release_branch_prefix/next" ]
+elif [ "$branch" = "next" ]
 then
   upstream="next"
 else
