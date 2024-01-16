@@ -24,12 +24,10 @@ git commit -m 'chore: merge `main` into `next`' --no-verify
 if [ -f "$working_directory/.changeset/pre.json" ]
 then
   pnpm exec changeset pre exit
-else
+fi
 
 pnpm exec changeset pre enter
 git add "$CHANGESET_PATH"
 git commit -m "chore: enter pre-release mode (next)" --no-verify
 
 git push origin next --no-verify
-
-
