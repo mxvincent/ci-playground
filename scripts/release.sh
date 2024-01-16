@@ -26,7 +26,7 @@ then
 fi
 
 git checkout main
-git pull main
+git pull origin main
 git merge next
 git push origin main next
 
