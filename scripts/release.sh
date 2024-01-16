@@ -18,18 +18,11 @@ echo "changeset-path=$CHANGESET_PATH"
 git checkout next
 git pull next
 
-# Get changeset pre-release tag
-if [ -f "$CHANGESET_PATH/pre.json" ]
-then
-  changeset_prerelease=$(awk -F'"' '/"tag": ".+"/{ print $4; exit; }' "$CHANGESET_PATH/pre.json")
-  echo "pre-release-channel=$changeset_prerelease"
-fi
-
 # Exit pre-release mode
 if [ -f "$CHANGESET_PATH/pre.json" ]
 then
    pnpm exec changeset pre exit
-   git commit -m "chore(release): exit pre-release mode (next)"
+   git commit -m "chore: exit pre-release mode (next)"
 fi
 
 git checkout main
