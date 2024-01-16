@@ -10,5 +10,9 @@
     "@pkg/eslint-config": "0.0.0",
     "@pkg/tsconfig": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "curvy-vans-build",
+    "soft-mugs-think",
+    "tasty-years-grow"
+  ]
 }
