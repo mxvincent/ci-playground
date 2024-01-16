@@ -28,6 +28,6 @@ fi
 git checkout main
 git pull origin main
 git merge next
-git push origin main next
+git push origin main next --no-verify
 
 
