@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v4
-      - name: 'Setup NodeJS'
-        uses: ./.github/actions/setup-node
       - name: 'Configure git'
         run: |
           git config --global user.name "gha-bot"
