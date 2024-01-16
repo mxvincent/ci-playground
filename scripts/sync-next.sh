@@ -11,11 +11,10 @@ done
 cd "$working_directory" || exit
 
 # Update local branches
-git fetch origin main:main
-git fetch origin next:next
-
-# Checkout main
+git checkout main
+git pull
 git checkout next
+git pull
 
 # Merge main into next
 git merge main --no-commit
