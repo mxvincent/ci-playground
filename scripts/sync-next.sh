@@ -1,5 +1,5 @@
 ###
-# Release
+# Sync next branch after a release
 ###
 
 # Set repository root as working directory
@@ -15,20 +15,22 @@ git fetch origin main:main
 git fetch origin next:next
 
 # Checkout main
-git checkout main
+git checkout next
 
-# Merge next into main
-git merge next --no-commit
-git commit -m 'chore: merge `next` into `main`' --no-verify
+# Merge main into next
+git merge main --no-commit
+git commit -m 'chore: merge `main` into `next`' --no-verify
 
-# Exit pre-release mode
+# Enter pre-release mode
 if [ -f "$working_directory/.changeset/pre.json" ]
 then
-   pnpm exec changeset pre exit
-   git add "$CHANGESET_PATH"
-   git commit -m "chore: exit pre-release mode (next)" --no-verify
+  pnpm exec changeset pre exit
+else
+  pnpm exec changeset pre enter
+  git add "$CHANGESET_PATH"
+  git commit -m "chore: enter pre-release mode (next)" --no-verify
 fi
 
-git push origin main --no-verify
+git push origin next --no-verify
 
 
