@@ -10,25 +10,25 @@ do
 done
 cd "$working_directory" || exit
 
-# Assign default value to environment variables
-: "${CHANGESET_PATH:=$working_directory/.changeset}"
-echo "changeset-path=$CHANGESET_PATH"
+# Update local branches
+git fetch origin main:main
+git fetch origin next:next
 
-# Checkout next branch
-git checkout next
-git pull next
+# Checkout main
+git checkout main
+
+# Merge next into main
+git merge next --no-commit
+git commit -m 'chore: merge `next` into `main`' --no-verify
 
 # Exit pre-release mode
-if [ -f "$CHANGESET_PATH/pre.json" ]
+if [ -f "$working_directory/.changeset/pre.json" ]
 then
    pnpm exec changeset pre exit
    git add "$CHANGESET_PATH"
    git commit -m "chore: exit pre-release mode (next)" --no-verify
 fi
 
-git checkout main
-git pull origin main
-git merge next
-git push origin main next --no-verify
+git push origin main --no-verify
 
 
