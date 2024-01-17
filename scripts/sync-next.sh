@@ -1,5 +1,6 @@
 ###
 # Sync next branch after a release
+# -> merge `main` into `next`
 ###
 
 # Set repository root as working directory
@@ -12,12 +13,11 @@ cd "$working_directory" || exit
 changeset_path="$working_directory/.changeset"
 
 # Update local branches
-git checkout main
-git pull
-git checkout next
-git pull
+git fetch origin main:main
+git fetch origin next:next
 
 # Merge main into next
+git checkout next
 git merge main --no-commit
 git commit -m 'chore: merge `main` into `next`' --no-verify
 

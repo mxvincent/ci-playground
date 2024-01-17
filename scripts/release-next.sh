@@ -1,5 +1,6 @@
 ###
 # Release stuff merged into next
+# -> merge `next` into `main`
 ###
 
 # Set repository root as working directory
@@ -9,17 +10,14 @@ do
   working_directory=$(dirname "$working_directory")
 done
 cd "$working_directory" || exit
-
 changeset_path="$working_directory/.changeset"
 
 # Update local branches
 git fetch origin main:main
 git fetch origin next:next
 
-# Checkout main
-git checkout main
-
 # Merge next into main
+git checkout main
 git merge next --no-commit
 git commit -m 'chore: merge `next` into `main`' --no-verify
 
