@@ -13,11 +13,12 @@ cd "$working_directory" || exit
 changeset_path="$working_directory/.changeset"
 
 # Update local branches
-git fetch origin main:main
-git fetch origin next:next
+git checkout next
+git fetch origin
+git checkout main
+git fetch origin
 
 # Merge next into main
-git checkout main
 git merge next --no-commit
 git commit -m 'chore: merge `next` into `main`' --no-verify
 
