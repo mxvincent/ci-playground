@@ -1,6 +1,6 @@
 {
   "name": "service-b",
-  "version": "0.1.1-next.0",
+  "version": "0.1.1",
   "repository": "https://github.com/mxvincent/node-packages/tree/main/applications/service-b",
   "private": true,
   "main": "./dist/index.js",
