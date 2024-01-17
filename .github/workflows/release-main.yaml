@@ -1,9 +1,10 @@
 name: 'release'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
 on:
   push:
     branches:
       - main
-      - next
 env:
   HUSKY: 0
   KUBECONFIG: /tmp/kube-config
@@ -26,7 +27,6 @@ jobs:
 #      - code-quality
     outputs:
       published: ${{ steps.action.outputs.published }}
-      release-upstream: ${{ github.ref_name }}
       build-matrix: ${{ steps.plan.outputs.build-matrix }}
     steps:
       - name: 'Checkout repository'
@@ -73,4 +73,4 @@ jobs:
       - build
     uses: ./.github/workflows/deploy.yaml
     with:
-      release-upstream: ${{ needs.release.outputs.release-upstream }}
+      release-upstream: main
